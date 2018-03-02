@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsUtils demo</title>
+</head>
+<body>
+<div class="root">
+    <section>
+        <div>
+            <span>当前网页的hash是:</span><span id="hash"></span>
+        </div>
+    </section>
+
+</div>
+<script src="../js/utils.js"></script>
+<script>
+    // 获取当前网页地址的hash
+    const HASH = _utils.getHashByLocation();
+    console.log(HASH);
+    document.getElementById('hash').innerText = HASH;
+</script>
+</body>
+</html>
