@@ -12,7 +12,7 @@
      * @param {null}
      * @returns {String} 当前地址的hash
      */
-    getHashByLocation = () => {
+    const getHashByLocation = () => {
         let originHASH = window.location.hash;
         if (originHASH && originHASH.length) {
             let HASH = originHASH;
@@ -26,8 +26,25 @@
         }
         return originHASH;
     }
+    /**
+     * @description 时间戳转为date
+     * @param {Number} 需要转换的时间戳
+     * @returns {String}
+     */
+    const formatTimestampToDate = timestamp => {
+        if (!isNaN(timestamp)) {
+            const date = new Date(timestamp);
+            const Y = date.getFullYear();
+            let M = date.getMonth() + 1;
+            M = M < 10 ? '0' + M : M;
+            let D = date.getDate();
+            D = D < 10 ? '0' + D : D;
+            return `${Y}-${M}-${D}`;
+        }
+    }
 
     w._utils = {
-        getHashByLocation
+        getHashByLocation,
+        formatTimestampToDate,
     }
 })(window, undefined)
