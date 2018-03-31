@@ -43,6 +43,18 @@
         }
     }
 
+
+    /**
+     * @description 判断数组中是否包含传入的元素
+     * @param arr
+     * @param element
+     * @returns {boolean}
+     */
+    arrayHasElement = (arr, element) => {
+        const temp = new Set(arr.slice());
+        return temp.has(element);
+    }
+
     w._utils = {
         getHashByLocation,
         formatTimestampToDate,
