@@ -6,7 +6,6 @@
  */
 ;((w, u) => {
 
-
     /**
      * @description 获取当前地址的hash
      * @param {null}
@@ -26,6 +25,7 @@
         }
         return originHASH;
     }
+
     /**
      * @description 时间戳转为date
      * @param {Number} 需要转换的时间戳
@@ -55,8 +55,31 @@
         return temp.has(element);
     }
 
+    /**
+     * @description 选择排序
+     * @param arr
+     */
+    const sortBySelection = arr => {
+        if (arr && arr.length) {
+            let len = arr.length;
+            let temp = null;
+            let minIndex = 0;
+            for (let i = 0; i < len - 1; i++) {
+                minIndex = i;
+                for (let j = i + 1; j < len; j++) {
+                    if (arr[minIndex] > arr[j])
+                        minIndex = j;
+                }
+                temp = arr[i];
+                arr[i] = arr[minIndex];
+                arr[minIndex] = temp;
+            }
+        }
+    }
+
     w._utils = {
         getHashByLocation,
         formatTimestampToDate,
+        sortBySelection
     }
 })(window, undefined)
