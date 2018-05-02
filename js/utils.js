@@ -27,6 +27,25 @@
     }
 
     /**
+     * 从url中获取指定的参数
+     * @param name
+     * @return {object}
+     */
+    const getQueryParamByUrl = name => {
+        let url = window.location.href;
+        let data = url.split('common.html')[1];
+        if (data) {
+            data = data.substr(1);
+        }
+        const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+        let r = data.match(reg);
+        if (r != null) {
+            return decodeURI(r[2]);
+        }
+        return null;
+    }
+
+    /**
      * @description 时间戳转为date
      * @param {Number} 需要转换的时间戳
      * @returns {String}
@@ -77,8 +96,20 @@
         }
     }
 
+    /**
+     * @description 快速排序
+     * @param arr
+     */
+    const sortByQuick = arr => {
+        if (arr) {
+
+        }
+    }
+
+
     w._utils = {
         getHashByLocation,
+        getQueryParamByUrl,
         formatTimestampToDate,
         sortBySelection
     }
