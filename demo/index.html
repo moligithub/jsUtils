@@ -6,21 +6,15 @@
 </head>
 <body>
 <div class="root">
-    <section>
-        <div>
-            <span>当前网页的hash是:</span><span id="hash"></span>
-        </div>
-    </section>
-
 </div>
 <script src="../js/utils.js"></script>
 <script>
 
     // 测试排序算法
-    let arr = [90, 2, 45, 1943, 8, 26, 43, 22, 9, 23, 5];
-    sortBySelection(arr);
+    let arr = [90, 20000, 45, 1943, 8, 26, 43, 22, 9, 23, 588];
+    const result = _utils.sortByQuick(arr);
+    console.log(result)
 
-    console.log(arr)
 </script>
 </body>
 </html>

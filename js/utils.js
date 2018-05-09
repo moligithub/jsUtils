@@ -33,14 +33,14 @@
      */
     const getQueryParamByUrl = name => {
         let url = window.location.href;
-        let data = url.split('common.html')[1];
+        let data = url.split('.html')[1];
         if (data) {
             data = data.substr(1);
-        }
-        const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
-        let r = data.match(reg);
-        if (r != null) {
-            return decodeURI(r[2]);
+            const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+            let r = data.match(reg);
+            if (r != null) {
+                return decodeURI(r[2]);
+            }
         }
         return null;
     }
@@ -101,16 +101,44 @@
      * @param arr
      */
     const sortByQuick = arr => {
-        if (arr) {
-
+        if (typeOf(arr) !== 'array') {
+            return arr;
         }
+        if (arr.length <= 1) {
+            return arr;
+        }
+        let mid = arr.splice(0, 1);
+        let len = arr.length;
+
+        let left = [];
+        let right = [];
+        for (let i = 0; i < len; i++) {
+            if (arr[i] <= mid) {
+                left.push(arr[i])
+            } else {
+                right.push(arr[i])
+            }
+        }
+        return sortByQuick(left).concat(mid, sortByQuick(right));
     }
 
+    /**
+     * @description 判断数据类型
+     * @param obj
+     * @returns {any}
+     */
+    const typeOf = obj => {
+        const regexp = new RegExp(/(^\[object\s)|(\])$/, 'gi');
+        const type = Object.prototype.toString.call(obj);
+        return type.replace(regexp, '').toLowerCase();
+    }
 
     w._utils = {
         getHashByLocation,
         getQueryParamByUrl,
         formatTimestampToDate,
-        sortBySelection
+        sortBySelection,
+        typeOf,
+        sortByQuick
     }
 })(window, undefined)
